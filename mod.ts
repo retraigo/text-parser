@@ -27,7 +27,7 @@ export class Parser<ElementType> {
   error(message: string, index = this.pointer) {
     throw new Error(
       `${message} THROWN AT ${index} of ${
-        this.template.slice((index - 10) || 0, index + 10)
+        this.template.slice((index - 10) >= 0 ? (index - 10) : 0, index + 10)
       }`,
     );
   }
