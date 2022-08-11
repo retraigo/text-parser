@@ -1,15 +1,7 @@
 export interface ExpressionElement<ElementType> {
   start: number;
-  name?: string;
   end: number;
-  type: ElementType;
-  data:
-    | string
-    | boolean
-    | number
-    | ExpressionElement<ElementType>
-    | ExpressionElement<ElementType>[];
-  children: ExpressionElement<ElementType>[];
+  data: ElementType;
 }
 
 export class Parser<ElementType> {
@@ -52,6 +44,7 @@ export class Parser<ElementType> {
   }
   read(pattern: RegExp): string {
     const matches = pattern.exec(this.template.slice(this.pointer));
+    console.log(matches)
     if (!matches || matches.index !== 0) return "";
 
     this.pointer += matches[0].length;
