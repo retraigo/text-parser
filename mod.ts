@@ -58,6 +58,13 @@ export class Parser<ElementType> {
 
     return matches[0];
   }
+  readUntil(pattern: RegExp): string {
+    const match = pattern.exec(this.template.slice(this.pointer));
+    return this.template.slice(
+      this.pointer,
+      match ? (this.pointer += match.index) : this.template.length,
+    );
+  }
   remaining(): string {
     return this.template.slice(this.pointer, this.template.length - 1);
   }
